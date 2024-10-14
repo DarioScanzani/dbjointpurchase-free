@@ -53,6 +53,19 @@
     <div class="productjoint_img">
         <img src="{$producto.cover.bySize.home_default.url}" alt="{$producto.name}" loading="lazy" width="{$product.cover.bySize.home_default.width}" height="{$product.cover.bySize.home_default.height}">
     </div>
+
+    <!--Añadido un select para relacionar los productos -->
+    <div class="related-products">
+        <label for="related-products-selector-{$producto.id_product}">Seleccionar productos relacionados:</label>
+        <select class="related-products-selector" id="related-products-selector-{$producto.id_product}" data-idproduct="{$producto.id_product}">
+            <option value="">-- Seleccionar producto --</option>
+            {foreach from=$related_products item=related_product}
+                <option value="{$related_product.id_product}">{$related_product.name}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    
     {if $premium == 1}
         <span class="change_product" data-key="{$i}" data-idproduct="{$producto.id_product}" data-idcategory="{$producto.id_category_default}">
             {l s='Cambiar' mod='dbjointpurchase'}

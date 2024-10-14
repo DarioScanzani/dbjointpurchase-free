@@ -168,4 +168,23 @@ $( document ).ready(function() {
         $("#btn_dbjointpurchase").attr("disabled","disabled");
     }
 
+    // Select the related products
+    $(document).on('change', '.related-products-selector', function() {
+        var selectedProducts = $(this).val();
+        if (selectedProducts.length > 3) {
+            alert('Solo puedes seleccionar hasta 3 productos.');
+            $(this).val(selectedProducts.slice(0, 3));
+        }
+        updateSelectedProducts(selectedProducts);
+    });
+
+    // Update selected products list
+    function updateSelectedProducts(selectedProducts) {
+        $('#selected-products-list').empty();
+        selectedProducts.forEach(function(productId) {
+            var productElement = $('<li>').text('Producto ID: ' + productId);
+            $('#selected-products-list').append(productElement); 
+        });
+    }
+
 });
